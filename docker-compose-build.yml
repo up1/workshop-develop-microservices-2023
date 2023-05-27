@@ -16,15 +16,15 @@ services:
     ports:
       - "9080:9080"
   
-  # catalog:
-  #   build: ./catalog
-  #   environment:
-  #     APP_PRICING_ENDPOINT: http://pricing:3000/prices
-  #     APP_STOCK_ENDPOINT: http://stock:3000/stocks
-  #     OTEL_EXPORTER_OTLP_ENDPOINT: http://jaeger:4317
-  #     OTEL_RESOURCE_ATTRIBUTES: service.name=catalog
-  #     OTEL_METRICS_EXPORTER: none
-  #     OTEL_LOGS_EXPORTER: none
+  catalog:
+    build: ./catalog/catalog
+    environment:
+      APP_PRICING_ENDPOINT: http://pricing:3000/prices
+      APP_STOCK_ENDPOINT: http://stock:3000/stocks
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://jaeger:4317
+      OTEL_RESOURCE_ATTRIBUTES: service.name=catalog
+      OTEL_METRICS_EXPORTER: none
+      OTEL_LOGS_EXPORTER: none
   
   # pricing:
   #   build: ./pricing

@@ -4,7 +4,7 @@ upstreams:
       "jaeger:16686": 1
   - id: 2
     nodes:
-      "catalog:8080": 1
+      "catalog": 1
   - id: 3
     nodes:
       "pricing:3000": 1
@@ -13,7 +13,10 @@ upstreams:
       "stock:3000": 1
 
 routes:
-  - uri: /products*
+  - uri: /catalog*
+    plugins:
+      proxy-rewrite:
+        regex_uri: ["/catalog/(.*)", "/$1"]
     upstream_id: 2
   - uri: /prices*
     upstream_id: 3
