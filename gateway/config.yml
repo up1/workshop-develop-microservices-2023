@@ -4,6 +4,7 @@ deployment:
     config_provider: yaml
 plugins:
   - opentelemetry
+  - proxy-rewrite
 plugin_attr:
   opentelemetry:
     resource:

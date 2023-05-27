@@ -18,6 +18,9 @@ routes:
   - uri: /prices*
     upstream_id: 3
   - uri: /stock*
+    plugins:
+      proxy-rewrite:
+        regex_uri: ["/stock/(.*)", "/$1"]
     upstream_id: 4
   - uris:
     - /search
