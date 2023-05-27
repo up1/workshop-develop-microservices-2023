@@ -41,3 +41,13 @@ services:
       OTEL_RESOURCE_ATTRIBUTES: service.name=stock
       OTEL_METRICS_EXPORTER: none
       OTEL_LOGS_EXPORTER: none
+  
+  database:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://jaeger:4317
+      OTEL_RESOURCE_ATTRIBUTES: service.name=stock
+      OTEL_METRICS_EXPORTER: none
+      OTEL_LOGS_EXPORTER: none
+      ACCEPT_EULA: Y
+      MSSQL_SA_PASSWORD: zitgmLwmp1@q
