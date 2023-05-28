@@ -7,6 +7,7 @@ COPY . ./
 RUN dotnet publish ./ -c "${PUBLISH_CONFIGURATION}" -f "${PUBLISH_FRAMEWORK}" -o /out -p:IntegrationBuild=true
 
 FROM mcr.microsoft.com/dotnet/aspnet:${SDK_VERSION} AS runtime
+ENV TZ=Asia/Bangkok
 WORKDIR /app
 COPY --from=build /out ./
 ENTRYPOINT ["dotnet", "catalog.dll"]
