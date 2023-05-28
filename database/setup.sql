@@ -12,5 +12,3 @@ GO
 INSERT INTO Product VALUES(1, "Name 01", "Desc 01", 0,0);
 INSERT INTO Product VALUES(2, "Name 02", "Desc 02", 0,0);
 GO
-SELECT * FROM Product;
-GO
