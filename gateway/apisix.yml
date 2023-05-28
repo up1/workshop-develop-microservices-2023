@@ -18,7 +18,10 @@ routes:
       proxy-rewrite:
         regex_uri: ["/catalog/(.*)", "/$1"]
     upstream_id: 2
-  - uri: /prices*
+  - uri: /pricing*
+    plugins:
+      proxy-rewrite:
+        regex_uri: ["/pricing/(.*)", "/$1"]
     upstream_id: 3
   - uri: /stock*
     plugins:

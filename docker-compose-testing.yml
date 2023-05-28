@@ -1,0 +1,39 @@
+version: "3"
+
+services:
+  stock_testing:
+    image: postman/newman:alpine
+    volumes:
+      - ./api_testing/stock_testing.postman_collection.json:/etc/newman/stock.json
+    command:
+      run stock.json -k
+      -r cli,json
+      --reporter-json-export="reports/stockReport.json"
+    networks:
+      - demo
+
+  pricing_testing:
+    image: postman/newman:alpine
+    volumes:
+      - ./api_testing/pricing_testing.postman_collection.json:/etc/newman/pricing.json
+    command:
+      run pricing.json -k
+      -r cli,json
+      --reporter-json-export="reports/pricingReport.json"
+    networks:
+      - demo
+  
+  catalog_testing:
+    image: postman/newman:alpine
+    volumes:
+      - ./api_testing/catalog_testing.postman_collection.json:/etc/newman/catalog.json
+    command:
+      run catalog.json -k
+      -r cli,json
+      --reporter-json-export="reports/catalogReport.json"
+    networks:
+      - demo
+
+networks:
+  demo:
+    driver: bridge

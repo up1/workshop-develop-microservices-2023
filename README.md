@@ -53,8 +53,43 @@ $docker compose -f docker-compose-build.yml logs --follow
 
 ## Deploy with docker-compose
 ```
+$docker compose -f docker-compose-build.yml down
 $docker compose -f docker-compose-build.yml build
 $docker compose -f docker-compose-build.yml up -d
 $docker compose -f docker-compose-build.yml ps
 $docker compose -f docker-compose-build.yml logs --follow
+```
+
+Initial data for testing
+```
+$sh initial_data.sh
+```
+
+## API Testing
+
+Stock service
+```
+$docker compose -f docker-compose-build.yml up -d stock
+$docker compose -f docker-compose-testing.yml up stock_testing
+
+$docker compose -f docker-compose-build.yml down
+$docker compose -f docker-compose-testing.yml down
+```
+
+Pricing service
+```
+$docker compose -f docker-compose-build.yml up -d pricing
+$docker compose -f docker-compose-testing.yml up  pricing_testing
+
+$docker compose -f docker-compose-build.yml down
+$docker compose -f docker-compose-testing.yml down
+```
+
+Catalog service
+```
+$docker compose -f docker-compose-build.yml up -d catalog
+$docker compose -f docker-compose-testing.yml up catalog_testing
+
+$docker compose -f docker-compose-build.yml down
+$docker compose -f docker-compose-testing.yml down
 ```

@@ -1,0 +1,47 @@
+{
+	"info": {
+		"_postman_id": "eb019486-b530-4d74-ab6d-d17d369ea0d8",
+		"name": "catalog_testing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1453931",
+		"_collection_link": "https://red-firefly-245852.postman.co/workspace/day2~ec0d6ed6-713c-474c-888d-74f09fc94cba/collection/1453931-eb019486-b530-4d74-ab6d-d17d369ea0d8?action=share&creator=1453931&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "Get all products + stock + pricing Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Your test name\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.length).to.eql(2);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://catalog/products",
+					"protocol": "http",
+					"host": [
+						"catalog"
+					],
+					"path": [
+						"products"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

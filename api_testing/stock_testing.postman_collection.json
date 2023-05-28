@@ -1,0 +1,43 @@
+{
+	"info": {
+		"_postman_id": "c312e9c8-e55c-44c9-88c6-6be53b3cf133",
+		"name": "stock_testing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1453931",
+		"_collection_link": "https://red-firefly-245852.postman.co/workspace/day2~ec0d6ed6-713c-474c-888d-74f09fc94cba/collection/1453931-c312e9c8-e55c-44c9-88c6-6be53b3cf133?action=share&creator=1453931&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "Check stock",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://stock:3000/",
+					"protocol": "http",
+					"host": [
+						"stock"
+					],
+					"port": "3000",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
