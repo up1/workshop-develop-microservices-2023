@@ -1,4 +1,4 @@
-USE catalog-api;
+USE catalog_api;
 GO
 CREATE TABLE Product (
     ID int, 
