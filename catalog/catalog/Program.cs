@@ -6,6 +6,7 @@ using OpenTelemetry.Exporter;
 using catalog;
 using catalog.Services;
 using AutoMapper;
+using System.Text.Json.Serialization;
 
 var appBuilder = WebApplication.CreateBuilder(args);
 // Add services to the container.
@@ -40,7 +41,11 @@ appBuilder.Services.AddOpenTelemetry()
 
     });
 
-appBuilder.Services.AddControllers();
+appBuilder.Services.AddControllers().AddJsonOptions(x =>
+{
+    x.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+    x.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
+});
 appBuilder.Services.AddEndpointsApiExplorer();
 appBuilder.Services.AddSwaggerGen();
 
