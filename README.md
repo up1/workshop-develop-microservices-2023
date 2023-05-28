@@ -100,10 +100,12 @@ Catalog service
 $docker compose -f docker-compose-build.yml build catalog
 $docker compose -f docker-compose-build.yml up -d catalog
 $docker compose -f docker-compose-build.yml ps
-NAME                IMAGE                              COMMAND                  SERVICE             CREATED             STATUS                    PORTS
-database            mcr.microsoft.com/azure-sql-edge   "/opt/mssql/bin/perm…"   database            19 seconds ago      Up 18 seconds (healthy)   1401/tcp, 0.0.0.0:1433->1433/tcp, :::1433->1433/tcp
-demo-pricing-1      somkiat/pricing:1.0                "docker-entrypoint.s…"   pricing             19 seconds ago      Up 18 seconds (healthy)   
-demo-stock-1        somkiat/stock:1.0                  "docker-entrypoint.s…"   stock               19 seconds ago      Up 18 seconds (healthy)
+NAME                IMAGE                              COMMAND                  SERVICE             CREATED             STATUS                   PORTS
+database            mcr.microsoft.com/azure-sql-edge   "/opt/mssql/bin/perm…"   database            4 minutes ago       Up 4 minutes (healthy)   1401/tcp, 0.0.0.0:1433->1433/tcp, :::1433->1433/tcp
+demo-catalog-1      somkiat/catalog:1.0                "dotnet catalog.dll"     catalog             10 seconds ago      Up 8 seconds             
+demo-jaeger-1       demo-jaeger                        "/go/bin/all-in-one-…"   jaeger              10 seconds ago      Up 9 seconds             5775/udp, 5778/tcp, 14250/tcp, 6831-6832/udp, 14268/tcp, 0.0.0.0:16686->16686/tcp, :::16686->16686/tcp
+demo-pricing-1      somkiat/pricing:1.0                "docker-entrypoint.s…"   pricing             4 minutes ago       Up 4 minutes (healthy)   
+demo-stock-1        somkiat/stock:1.0                  "docker-entrypoint.s…"   stock               4 minutes ago       Up 4 minutes (healthy)
 
 $sh initial_data.sh
 
