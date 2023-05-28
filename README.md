@@ -36,6 +36,3 @@ $docker compose -f docker-compose-build.yml up -d catalog
 ```
 
 Call Stock servie with URL :: http://localhost:9080/catalog/
-
-
-

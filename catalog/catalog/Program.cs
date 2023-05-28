@@ -3,9 +3,17 @@ using OpenTelemetry.Instrumentation.AspNetCore;
 using OpenTelemetry.Resources;
 using System.Reflection.PortableExecutable;
 using OpenTelemetry.Exporter;
+using catalog;
+using catalog.Services;
+using AutoMapper;
 
 var appBuilder = WebApplication.CreateBuilder(args);
 // Add services to the container.
+
+appBuilder.Services.AddDbContext<DataContext>();
+appBuilder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+appBuilder.Services.AddScoped<IProductService, ProductService>();
+
 Action<ResourceBuilder> configureResource = r => r.AddService(
     serviceName: "catalog-service",
     serviceVersion: "1.0",

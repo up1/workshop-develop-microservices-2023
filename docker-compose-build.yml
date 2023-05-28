@@ -45,7 +45,10 @@ services:
       OTEL_LOGS_EXPORTER: none
   
   database:
-    image: mcr.microsoft.com/mssql/server:2022-latest
+    image: mcr.microsoft.com/azure-sql-edge
+    container_name: database
+    ports:
+      - "1433:1433"
     environment:
       OTEL_EXPORTER_OTLP_ENDPOINT: http://jaeger:4317
       OTEL_RESOURCE_ATTRIBUTES: service.name=stock
@@ -53,3 +56,10 @@ services:
       OTEL_LOGS_EXPORTER: none
       ACCEPT_EULA: Y
       MSSQL_SA_PASSWORD: zitgmLwmp1@q
+      MSSQL_PID: Developer
+    healthcheck:
+      test: /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P "$$SA_PASSWORD" -Q "SELECT 1" || exit 1
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
