@@ -42,3 +42,11 @@ $docker compose -f docker-compose-build.yml up -d catalog
 ```
 
 Call Stock servie with URL :: http://localhost:9080/catalog/
+
+
+## Deploy with single command
+```
+$sh deploy_with_docker.sh
+$docker compose -f docker-compose-build.yml ps
+$docker compose -f docker-compose-build.yml logs --follow
+```
