@@ -16,7 +16,7 @@ namespace catalog
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
             // connect to sql server with connection string from app settings
-            options.UseSqlServer(Configuration.GetConnectionString("ConnectionStrings"));
+            options.UseSqlServer(Configuration.GetConnectionString("WebApiDatabase"));
         }
 
         public DbSet<Product> Products { get; set; }
