@@ -18,6 +18,8 @@ services:
       - "9080:9080"
     environment:
       - TZ=Asia/Bangkok
+    depends_on:
+      - catalog
   
   catalog:
     build: ./catalog/catalog
@@ -29,6 +31,13 @@ services:
       OTEL_RESOURCE_ATTRIBUTES: service.name=catalog
       OTEL_METRICS_EXPORTER: none
       OTEL_LOGS_EXPORTER: none
+    depends_on:
+      pricing:
+        condition: service_healthy
+      stock:
+        condition: service_healthy
+      database:
+        condition: service_healthy
   
   pricing:
     build: ./pricing
@@ -38,6 +47,12 @@ services:
       OTEL_RESOURCE_ATTRIBUTES: service.name=pricing
       OTEL_METRICS_EXPORTER: none
       OTEL_LOGS_EXPORTER: none
+    healthcheck:
+      test: ["CMD", "wget --no-verbose --tries=1 --spider http://localhost:3000/healthz || exit 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
 
   stock:
     build: ./stock
@@ -47,6 +62,12 @@ services:
       OTEL_RESOURCE_ATTRIBUTES: service.name=stock
       OTEL_METRICS_EXPORTER: none
       OTEL_LOGS_EXPORTER: none
+    healthcheck:
+      test: ["CMD", "wget --no-verbose --tries=1 --spider http://localhost:3000/healthz || exit 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
   
   database:
     image: mcr.microsoft.com/azure-sql-edge
