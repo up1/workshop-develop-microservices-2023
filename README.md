@@ -20,6 +20,12 @@ $docker compose -f docker-compose-build.yml up -d gateway
 
 URL of Jaeger dashboard :: http://localhost:16686/
 
+### Start `database service`
+```
+$docker compose -f docker-compose-build.yml up -d database
+$docker compose -f docker-compose-build.yml ps
+```
+
 ### Start `Stock service`
 ```
 $docker compose -f docker-compose-build.yml build stock

@@ -47,6 +47,8 @@ services:
   database:
     image: mcr.microsoft.com/azure-sql-edge
     container_name: database
+    volumes:
+      - ./database/setup.sql:/
     ports:
       - "1433:1433"
     environment:
