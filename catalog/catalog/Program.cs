@@ -27,6 +27,7 @@ appBuilder.Services.AddOpenTelemetry()
         builder
             .AddSource(".NET7 Core")
             .SetSampler(new AlwaysOnSampler())
+            .AddSqlClientInstrumentation()
             .AddHttpClientInstrumentation()
             .AddAspNetCoreInstrumentation();
 
