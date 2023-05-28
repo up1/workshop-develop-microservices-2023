@@ -4,6 +4,7 @@ using System.Data;
 
 namespace catalog
 {
+    [Table("Product")]
     public class Product
 	{
         public int Id { get; set; }
