@@ -18,6 +18,7 @@ services:
   
   catalog:
     build: ./catalog/catalog
+    image: somkiat/catalog:1.0
     environment:
       APP_PRICING_ENDPOINT: http://pricing:3000/prices
       APP_STOCK_ENDPOINT: http://stock:3000/stocks
@@ -36,6 +37,7 @@ services:
 
   stock:
     build: ./stock
+    image: somkiat/stock:1.0
     environment:
       OTEL_EXPORTER_OTLP_ENDPOINT: http://jaeger:4317
       OTEL_RESOURCE_ATTRIBUTES: service.name=stock
