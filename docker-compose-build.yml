@@ -7,6 +7,7 @@ services:
       - "16686:16686"
     environment:
       - COLLECTOR_OTLP_ENABLED=true
+      - TZ=Asia/Bangkok
 
   gateway:
     image: apache/apisix:3.2.0-debian
