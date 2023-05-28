@@ -8,6 +8,8 @@ services:
       - "16686:16686"
     environment:
       - COLLECTOR_OTLP_ENABLED=true
+    networks:
+      - demo
 
   gateway:
     image: apache/apisix:3.2.0-debian
@@ -20,6 +22,8 @@ services:
       - TZ=Asia/Bangkok
     depends_on:
       - catalog
+    networks:
+      - demo
   
   catalog:
     build: ./catalog/catalog
@@ -38,6 +42,8 @@ services:
         condition: service_healthy
       database:
         condition: service_healthy
+    networks:
+      - demo
   
   pricing:
     build: ./pricing
@@ -53,6 +59,8 @@ services:
       timeout: 5s
       retries: 5
       start_period: 5s
+    networks:
+      - demo
 
   stock:
     build: ./stock
@@ -68,6 +76,8 @@ services:
       timeout: 5s
       retries: 5
       start_period: 5s
+    networks:
+      - demo
   
   database:
     image: mcr.microsoft.com/azure-sql-edge
@@ -90,3 +100,9 @@ services:
       timeout: 5s
       retries: 5
       start_period: 10s
+    networks:
+      - demo
+
+networks:
+  demo:
+    driver: bridge
