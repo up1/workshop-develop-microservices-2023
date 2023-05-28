@@ -50,3 +50,11 @@ $sh deploy_with_docker.sh
 $docker compose -f docker-compose-build.yml ps
 $docker compose -f docker-compose-build.yml logs --follow
 ```
+
+## Deploy with docker-compose
+```
+$docker compose -f docker-compose-build.yml build
+$docker compose -f docker-compose-build.yml up -d
+$docker compose -f docker-compose-build.yml ps
+$docker compose -f docker-compose-build.yml logs --follow
+```
