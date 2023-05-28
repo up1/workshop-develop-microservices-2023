@@ -69,7 +69,12 @@ $sh initial_data.sh
 
 Stock service
 ```
+$docker compose -f docker-compose-build.yml build stock
 $docker compose -f docker-compose-build.yml up -d stock
+$docker compose -f docker-compose-build.yml ps
+NAME                IMAGE               COMMAND                  SERVICE             CREATED             STATUS                   PORTS
+demo-stock-1        somkiat/stock:1.0   "docker-entrypoint.s…"   stock               6 seconds ago       Up 5 seconds (healthy)
+
 $docker compose -f docker-compose-testing.yml up stock_testing
 
 $docker compose -f docker-compose-build.yml down
@@ -78,7 +83,12 @@ $docker compose -f docker-compose-testing.yml down
 
 Pricing service
 ```
+$docker compose -f docker-compose-build.yml build pricing
 $docker compose -f docker-compose-build.yml up -d pricing
+$docker compose -f docker-compose-build.yml ps
+NAME                IMAGE                 COMMAND                  SERVICE             CREATED             STATUS                   PORTS
+demo-pricing-1      somkiat/pricing:1.0   "docker-entrypoint.s…"   pricing             8 seconds ago       Up 7 seconds (healthy)
+
 $docker compose -f docker-compose-testing.yml up  pricing_testing
 
 $docker compose -f docker-compose-build.yml down
@@ -87,7 +97,16 @@ $docker compose -f docker-compose-testing.yml down
 
 Catalog service
 ```
+$docker compose -f docker-compose-build.yml build catalog
 $docker compose -f docker-compose-build.yml up -d catalog
+$docker compose -f docker-compose-build.yml ps
+NAME                IMAGE                              COMMAND                  SERVICE             CREATED             STATUS                    PORTS
+database            mcr.microsoft.com/azure-sql-edge   "/opt/mssql/bin/perm…"   database            19 seconds ago      Up 18 seconds (healthy)   1401/tcp, 0.0.0.0:1433->1433/tcp, :::1433->1433/tcp
+demo-pricing-1      somkiat/pricing:1.0                "docker-entrypoint.s…"   pricing             19 seconds ago      Up 18 seconds (healthy)   
+demo-stock-1        somkiat/stock:1.0                  "docker-entrypoint.s…"   stock               19 seconds ago      Up 18 seconds (healthy)
+
+$sh initial_data.sh
+
 $docker compose -f docker-compose-testing.yml up catalog_testing
 
 $docker compose -f docker-compose-build.yml down

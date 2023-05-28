@@ -36,6 +36,8 @@ services:
       OTEL_METRICS_EXPORTER: none
       OTEL_LOGS_EXPORTER: none
     depends_on:
+      jaeger:
+        condition: service_started
       pricing:
         condition: service_healthy
       stock:
