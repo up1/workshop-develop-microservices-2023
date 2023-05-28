@@ -27,13 +27,14 @@ services:
       OTEL_METRICS_EXPORTER: none
       OTEL_LOGS_EXPORTER: none
   
-  # pricing:
-  #   build: ./pricing
-  #   environment:
-  #     OTEL_EXPORTER_OTLP_ENDPOINT: http://jaeger:4317
-  #     OTEL_RESOURCE_ATTRIBUTES: service.name=pricing
-  #     OTEL_METRICS_EXPORTER: none
-  #     OTEL_LOGS_EXPORTER: none
+  pricing:
+    build: ./pricing
+    image: somkiat/pricing:1.0
+    environment:
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://jaeger:4317
+      OTEL_RESOURCE_ATTRIBUTES: service.name=pricing
+      OTEL_METRICS_EXPORTER: none
+      OTEL_LOGS_EXPORTER: none
 
   stock:
     build: ./stock

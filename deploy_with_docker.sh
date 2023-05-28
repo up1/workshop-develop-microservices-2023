@@ -29,6 +29,9 @@ docker container exec database /opt/mssql-tools/bin/sqlcmd -U "$DB_USER" -P "$DB
 echo "Start stock service"
 docker compose -f $FILE up -d stock
 
+echo "Start stock pricing"
+docker compose -f $FILE up -d pricing
+
 echo "Start catalog service"
 docker compose -f $FILE up -d catalog
 

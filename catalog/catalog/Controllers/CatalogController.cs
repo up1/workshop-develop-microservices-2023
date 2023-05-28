@@ -34,7 +34,12 @@ public class CatalogController : ControllerBase
     [HttpGet("/products")]
     public IActionResult GetProducts()
     {
+        _logger.LogInformation(2000, "TRACING DEMO: Get all products from database");
         var products = _productService.GetAll();
+        _logger.LogInformation(2001, "TRACING DEMO: Call stock service");
+        _httpClient.GetStringAsync("http://stock:3000/");
+        _logger.LogInformation(2002, "TRACING DEMO: Call pricing service");
+        _httpClient.GetStringAsync("http://pricing:3000/");
         return Ok(products);
     }
 }
