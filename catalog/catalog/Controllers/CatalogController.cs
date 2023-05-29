@@ -44,10 +44,12 @@ public class CatalogController : ControllerBase
 
         foreach (var p in products)
         {
+            _logger.LogInformation(2001, "TRACING DEMO: Call stock service");
             var stock = await stockClient.GetFromJsonAsync<StockResponse>("/product/" + p.Id);
+            _logger.LogInformation(2001, "TRACING DEMO: Call product service");
             var price = await pricingClient.GetFromJsonAsync<PriceResponse>("/product/" + +p.Id);
-            p.Stock = stock.stock;
-            p.Price = price.price;
+            p.Stock = stock!.stock;
+            p.Price = price!.price;
         }
 
         return Ok(products);

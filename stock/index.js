@@ -32,8 +32,6 @@ app.get('/product/:id', (req, res) => {
       return res.status(500).send("Error");
     }
 
-    console.table(result);
-
     if(result && result.length > 0) {
       return res.json({ 
         product_id: Number(req.params.id),
