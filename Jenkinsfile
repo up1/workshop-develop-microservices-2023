@@ -14,6 +14,8 @@ pipeline {
         }
         stage('3. Testing Stock service') {
             steps {
+                sh '''docker compose -f docker-compose-build.yml up -d mysql
+                    sleep 5'''
                 sh '''docker compose -f docker-compose-build.yml up -d stock
                     sleep 5'''
                 sh "docker compose -f docker-compose-testing.yml up stock_testing --force-recreate --exit-code-from stock_testing"
