@@ -97,8 +97,8 @@ $docker compose -f docker-compose-testing.yml down
 
 Catalog service
 ```
-$docker compose -f docker-compose-build.yml build catalog
-$docker compose -f docker-compose-build.yml up -d catalog
+$docker compose -f docker-compose-build.yml build
+$docker compose -f docker-compose-build.yml up -d gateway
 $docker compose -f docker-compose-build.yml ps
 NAME                IMAGE                              COMMAND                  SERVICE             CREATED             STATUS                   PORTS
 database            mcr.microsoft.com/azure-sql-edge   "/opt/mssql/bin/perm…"   database            4 minutes ago       Up 4 minutes (healthy)   1401/tcp, 0.0.0.0:1433->1433/tcp, :::1433->1433/tcp
