@@ -130,7 +130,7 @@ services:
       - MYSQL_PASSWORD=pass
       - MYSQL_ROOT_PASSWORD=xxx
     healthcheck:
-      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost", "-uuser", "-ppass", "-e", "USE demo-db;"]
+      test: ["CMD", "mysql", "-hlocalhost", "-uuser", "-ppass", "-e", "USE demo-db;"]
       interval: 5s
       timeout: 5s
       retries: 5
