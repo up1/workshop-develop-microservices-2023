@@ -114,3 +114,6 @@ $docker compose -f docker-compose-testing.yml up catalog_testing
 $docker compose -f docker-compose-build.yml down
 $docker compose -f docker-compose-testing.yml down
 ```
+
+## Website references
+* [Course Microservices Workshop](https://github.com/up1/course_microservices-3-days)
