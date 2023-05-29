@@ -42,8 +42,7 @@ services:
       run gateway.json -k
       -r cli,json
       --reporter-json-export="reports/gatewayReport.json"
-    networks:
-      - demo
+    
 
 networks:
   demo:
