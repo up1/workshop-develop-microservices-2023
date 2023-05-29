@@ -2,6 +2,7 @@
 
 const tracer = require("./tracer")("stock-service");
 const api = require("@opentelemetry/api");
+const mysql = require("mysql2")
 const express = require('express')
 const app = express()
 const port = 3000
@@ -10,11 +11,38 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
+const db = mysql.createConnection({
+  host: process.env.DATABASE_HOST,
+  user: process.env.DATABASE_USER,
+  password: process.env.DATABASE_PASSWORD,
+  database: process.env.DATABASE
+})
+
+db.connect((error) => {
+  if(error) {
+      console.log(error)
+  } else {
+      console.log("MySQL connected!")
+  }
+})
+
 app.get('/product/:id', (req, res) => {
-  res.json({ 
-    product_id: Number(req.params.id),
-    stock: 9
-  })
+  db.query('SELECT stock FROM product_stock WHERE product_id = ?', [req.params.id], async (error, result) => {
+    if(error){
+      return res.status(500).send("Error");
+    }
+
+    console.table(result);
+
+    if(result && result.length > 0) {
+      return res.json({ 
+        product_id: Number(req.params.id),
+        price: result[0].stock
+      });
+    } 
+    return res.status(404).send("Data not found");
+  });
+  
 })
 
 app.get("/healthz", (req, res) => res.status(200).send("OK"));
