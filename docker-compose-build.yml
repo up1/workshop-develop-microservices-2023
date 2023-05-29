@@ -55,12 +55,19 @@ services:
       OTEL_RESOURCE_ATTRIBUTES: service.name=pricing
       OTEL_METRICS_EXPORTER: none
       OTEL_LOGS_EXPORTER: none
+      DATABASE: demo-db
+      DATABASE_HOST: mysql
+      DATABASE_USER: user
+      DATABASE_PASSWORD: pass
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3000/healthz"]
       interval: 5s
       timeout: 5s
       retries: 5
       start_period: 5s
+    depends_on:
+      mysql:
+        condition: service_healthy
     networks:
       - demo
 
@@ -72,12 +79,19 @@ services:
       OTEL_RESOURCE_ATTRIBUTES: service.name=stock
       OTEL_METRICS_EXPORTER: none
       OTEL_LOGS_EXPORTER: none
+      DATABASE: demo-db
+      DATABASE_HOST: mysql
+      DATABASE_USER: user
+      DATABASE_PASSWORD: pass
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3000/healthz"]
       interval: 5s
       timeout: 5s
       retries: 5
       start_period: 5s
+    depends_on:
+      mysql:
+        condition: service_healthy
     networks:
       - demo
   
@@ -102,6 +116,25 @@ services:
       timeout: 5s
       retries: 5
       start_period: 10s
+    networks:
+      - demo
+
+  mysql:
+    build:
+      context: ./mysql
+    container_name: mysql
+    image: somkiat/mysql:1.0
+    environment:
+      - MYSQL_DATABASE=demo-db
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=pass
+      - MYSQL_ROOT_PASSWORD=xxx
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost", "-uuser", "-ppass"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
     networks:
       - demo
 
