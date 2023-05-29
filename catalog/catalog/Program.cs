@@ -14,6 +14,7 @@ var appBuilder = WebApplication.CreateBuilder(args);
 appBuilder.Services.AddDbContext<DataContext>();
 appBuilder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 appBuilder.Services.AddScoped<IProductService, ProductService>();
+appBuilder.Services.AddHealthChecks();
 
 Action<ResourceBuilder> configureResource = r => r.AddService(
     serviceName: "catalog-service",
@@ -66,6 +67,8 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapHealthChecks("/healthz");
 
 app.Run();
 
