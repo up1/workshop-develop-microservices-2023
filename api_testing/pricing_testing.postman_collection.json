@@ -53,7 +53,7 @@
 							"pm.test(\"Check result\", function () {",
 							"    var jsonData = pm.response.json();",
 							"    pm.expect(1).to.eql(jsonData.product_id);",
-							"    pm.expect(101).to.eql(jsonData.price);",
+							"    pm.expect(100).to.eql(jsonData.price);",
 							"});"
 						],
 						"type": "text/javascript"
