@@ -75,10 +75,11 @@ $docker compose -f docker-compose-build.yml ps
 NAME                IMAGE               COMMAND                  SERVICE             CREATED             STATUS                   PORTS
 demo-stock-1        somkiat/stock:1.0   "docker-entrypoint.s…"   stock               6 seconds ago       Up 5 seconds (healthy)
 
-$docker compose -f docker-compose-testing.yml up stock_testing
+$docker compose -f docker-compose-testing.yml up stock_testing --force-recreate
 
 $docker compose -f docker-compose-build.yml down
 $docker compose -f docker-compose-testing.yml down
+$docker volume prune
 ```
 
 Pricing service
@@ -89,10 +90,11 @@ $docker compose -f docker-compose-build.yml ps
 NAME                IMAGE                 COMMAND                  SERVICE             CREATED             STATUS                   PORTS
 demo-pricing-1      somkiat/pricing:1.0   "docker-entrypoint.s…"   pricing             8 seconds ago       Up 7 seconds (healthy)
 
-$docker compose -f docker-compose-testing.yml up  pricing_testing
+$docker compose -f docker-compose-testing.yml up  pricing_testing --force-recreate
 
 $docker compose -f docker-compose-build.yml down
 $docker compose -f docker-compose-testing.yml down
+$docker volume prune
 ```
 
 Catalog service
@@ -112,10 +114,11 @@ $docker compose -f docker-compose-build.yml logs --follow
 
 $sh initial_data.sh
 
-$docker compose -f docker-compose-testing.yml up catalog_testing
+$docker compose -f docker-compose-testing.yml up catalog_testing --force-recreate
 
 $docker compose -f docker-compose-build.yml down
 $docker compose -f docker-compose-testing.yml down
+$docker volume prune
 ```
 
 ## Website references

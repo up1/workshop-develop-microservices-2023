@@ -37,7 +37,7 @@ app.get('/product/:id', (req, res) => {
     if(result && result.length > 0) {
       return res.json({ 
         product_id: Number(req.params.id),
-        price: result[0].stock
+        stock: result[0].stock
       });
     } 
     return res.status(404).send("Data not found");
