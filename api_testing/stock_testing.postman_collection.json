@@ -53,7 +53,7 @@
 							"pm.test(\"Checkl result\", function () {",
 							"    var jsonData = pm.response.json();",
 							"    pm.expect(1).to.eql(jsonData.product_id);",
-							"    pm.expect(100).to.eql(jsonData.price);",
+							"    pm.expect(11).to.eql(jsonData.price);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -73,6 +73,39 @@
 					"path": [
 						"product",
 						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Error with get stock per product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://stock:3000/product/3",
+					"protocol": "http",
+					"host": [
+						"stock"
+					],
+					"port": "3000",
+					"path": [
+						"product",
+						"3"
 					]
 				}
 			},

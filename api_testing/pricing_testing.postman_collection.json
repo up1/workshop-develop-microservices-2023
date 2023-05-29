@@ -77,6 +77,40 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Error with get price per product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://pricing:3000/product/3",
+					"protocol": "http",
+					"host": [
+						"pricing"
+					],
+					"port": "3000",
+					"path": [
+						"product",
+						"3"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
