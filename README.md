@@ -97,6 +97,7 @@ $docker compose -f docker-compose-testing.yml down
 
 Catalog service
 ```
+$docker compose -f docker-compose-build.yml down
 $docker compose -f docker-compose-build.yml build
 $docker compose -f docker-compose-build.yml up -d gateway
 $docker compose -f docker-compose-build.yml ps
@@ -106,6 +107,8 @@ demo-catalog-1      somkiat/catalog:1.0                "dotnet catalog.dll"     
 demo-jaeger-1       demo-jaeger                        "/go/bin/all-in-one-…"   jaeger              10 seconds ago      Up 9 seconds             5775/udp, 5778/tcp, 14250/tcp, 6831-6832/udp, 14268/tcp, 0.0.0.0:16686->16686/tcp, :::16686->16686/tcp
 demo-pricing-1      somkiat/pricing:1.0                "docker-entrypoint.s…"   pricing             4 minutes ago       Up 4 minutes (healthy)   
 demo-stock-1        somkiat/stock:1.0                  "docker-entrypoint.s…"   stock               4 minutes ago       Up 4 minutes (healthy)
+
+$docker compose -f docker-compose-build.yml logs --follow
 
 $sh initial_data.sh
 

@@ -17,12 +17,13 @@ public class CatalogController : ControllerBase
     private readonly IHttpClientFactory _httpClientFactory;
 
     public CatalogController(ILogger<CatalogController> logger, HttpClient httpClient,
-        IProductService productService, IMapper mapper)
+        IProductService productService, IMapper mapper, IHttpClientFactory httpClientFactory)
     {
         _logger = logger;
         _httpClient = httpClient;
         _productService = productService;
         _mapper = mapper;
+        _httpClientFactory = httpClientFactory;
     }
 
     [HttpGet]
