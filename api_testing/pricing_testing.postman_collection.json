@@ -38,6 +38,45 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Get price per product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Checkl result\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(1).to.eql(jsonData.product_id);",
+							"    pm.expect(100).to.eql(jsonData.price);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://pricing:3000/product/1",
+					"protocol": "http",
+					"host": [
+						"pricing"
+					],
+					"port": "3000",
+					"path": [
+						"product",
+						"1"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
