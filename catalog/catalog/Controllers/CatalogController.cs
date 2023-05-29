@@ -40,13 +40,12 @@ public class CatalogController : ControllerBase
         var products = _productService.GetAll();
 
         _logger.LogInformation(2001, "TRACING DEMO: Call stock service");
-        var pricingClient = _httpClientFactory.CreateClient("Stock-Service");
-        var result = await pricingClient.GetStringAsync("/product/1");
-        Console.WriteLine(result);
+        var stockClient = _httpClientFactory.CreateClient("Stock-Service");
+        await stockClient.GetStringAsync("/product/1");
 
         _logger.LogInformation(2002, "TRACING DEMO: Call pricing service");
-        var stockClient = _httpClientFactory.CreateClient("Pricing-Service");
-        await stockClient.GetStringAsync("/product/1");
+        var pricingClient = _httpClientFactory.CreateClient("Pricing-Service");
+        await pricingClient.GetStringAsync("/product/1");
         return Ok(products);
     }
 }
