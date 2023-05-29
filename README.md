@@ -117,3 +117,4 @@ $docker compose -f docker-compose-testing.yml down
 
 ## Website references
 * [Course Microservices Workshop](https://github.com/up1/course_microservices-3-days)
+* [NodeJS](https://github.com/up1/workshop-nodejs-web)
