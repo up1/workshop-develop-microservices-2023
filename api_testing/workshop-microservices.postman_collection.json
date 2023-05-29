@@ -1,0 +1,172 @@
+{
+	"info": {
+		"_postman_id": "18e76c7b-f584-4214-b63b-d42eaa91bc3a",
+		"name": "workshop-microservices",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1453931",
+		"_collection_link": "https://red-firefly-245852.postman.co/workspace/day2~ec0d6ed6-713c-474c-888d-74f09fc94cba/collection/1453931-18e76c7b-f584-4214-b63b-d42eaa91bc3a?action=share&creator=1453931&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "Get all products + stock + pricing",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Your test name\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.length).to.eql(2);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://178.128.88.8:9080/catalog/products",
+					"protocol": "http",
+					"host": [
+						"178",
+						"128",
+						"88",
+						"8"
+					],
+					"port": "9080",
+					"path": [
+						"catalog",
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Stock :: health check",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"OK\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://178.128.88.8:9080/stock/healthz",
+					"protocol": "http",
+					"host": [
+						"178",
+						"128",
+						"88",
+						"8"
+					],
+					"port": "9080",
+					"path": [
+						"stock",
+						"healthz"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pricing :: health check",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"OK\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://178.128.88.8:9080/pricing/healthz",
+					"protocol": "http",
+					"host": [
+						"178",
+						"128",
+						"88",
+						"8"
+					],
+					"port": "9080",
+					"path": [
+						"pricing",
+						"healthz"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Catalog :: health check",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Healthy\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://178.128.88.8:9080/catalog/healthz",
+					"protocol": "http",
+					"host": [
+						"178",
+						"128",
+						"88",
+						"8"
+					],
+					"port": "9080",
+					"path": [
+						"catalog",
+						"healthz"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

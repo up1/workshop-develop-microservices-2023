@@ -117,7 +117,15 @@ demo-stock-1        somkiat/stock:1.0                  "docker-entrypoint.s…" 
 $sh initial_data.sh
 
 $docker compose -f docker-compose-testing.yml up catalog_testing --force-recreate
+```
 
+Gateway Testing
+```
+$docker compose -f docker-compose-testing.yml up gateway_testing --force-recreate
+```
+
+Delete all resources
+```
 $docker compose -f docker-compose-build.yml down
 $docker compose -f docker-compose-testing.yml down
 $docker volume prune

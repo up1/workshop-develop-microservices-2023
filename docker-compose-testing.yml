@@ -33,6 +33,17 @@ services:
       --reporter-json-export="reports/catalogReport.json"
     networks:
       - demo
+  
+  gateway_testing:
+    image: postman/newman:alpine
+    volumes:
+      - ./api_testing/workshop-microservices.postman_collection.json:/etc/newman/gateway.json
+    command:
+      run gateway.json -k
+      -r cli,json
+      --reporter-json-export="reports/gatewayReport.json"
+    networks:
+      - demo
 
 networks:
   demo:
