@@ -87,6 +87,7 @@ Pricing service
 ```
 $docker compose -f docker-compose-build.yml build pricing
 $docker compose -f docker-compose-build.yml up -d pricing
+$docker compose -f docker-compose-build.yml logs --follow
 $docker compose -f docker-compose-build.yml ps
 NAME                IMAGE                 COMMAND                  SERVICE             CREATED             STATUS                   PORTS
 demo-pricing-1      somkiat/pricing:1.0   "docker-entrypoint.s…"   pricing             8 seconds ago       Up 7 seconds (healthy)
@@ -103,6 +104,7 @@ Catalog service
 $docker compose -f docker-compose-build.yml down
 $docker compose -f docker-compose-build.yml build
 $docker compose -f docker-compose-build.yml up -d gateway
+$docker compose -f docker-compose-build.yml logs --follow
 $docker compose -f docker-compose-build.yml ps
 NAME                IMAGE                              COMMAND                  SERVICE             CREATED             STATUS                   PORTS
 database            mcr.microsoft.com/azure-sql-edge   "/opt/mssql/bin/perm…"   database            4 minutes ago       Up 4 minutes (healthy)   1401/tcp, 0.0.0.0:1433->1433/tcp, :::1433->1433/tcp
@@ -111,7 +113,6 @@ demo-jaeger-1       demo-jaeger                        "/go/bin/all-in-one-…" 
 demo-pricing-1      somkiat/pricing:1.0                "docker-entrypoint.s…"   pricing             4 minutes ago       Up 4 minutes (healthy)   
 demo-stock-1        somkiat/stock:1.0                  "docker-entrypoint.s…"   stock               4 minutes ago       Up 4 minutes (healthy)
 
-$docker compose -f docker-compose-build.yml logs --follow
 
 $sh initial_data.sh
 

@@ -36,16 +36,20 @@ public class CatalogController : ControllerBase
     [HttpGet("/products")]
     public async Task<IActionResult> GetProducts()
     {
+        var stockClient = _httpClientFactory.CreateClient("Stock-Service");
+        var pricingClient = _httpClientFactory.CreateClient("Pricing-Service");
+
         _logger.LogInformation(2000, "TRACING DEMO: Get all products from database");
         var products = _productService.GetAll();
 
-        _logger.LogInformation(2001, "TRACING DEMO: Call stock service");
-        var stockClient = _httpClientFactory.CreateClient("Stock-Service");
-        await stockClient.GetStringAsync("/product/1");
+        foreach (var p in products)
+        {
+            var stock = await stockClient.GetFromJsonAsync<StockResponse>("/product/" + p.Id);
+            var price = await pricingClient.GetFromJsonAsync<PriceResponse>("/product/" + +p.Id);
+            p.Stock = stock.stock;
+            p.Price = price.price;
+        }
 
-        _logger.LogInformation(2002, "TRACING DEMO: Call pricing service");
-        var pricingClient = _httpClientFactory.CreateClient("Pricing-Service");
-        await pricingClient.GetStringAsync("/product/1");
         return Ok(products);
     }
 }
