@@ -7,6 +7,11 @@
 * Database => MS SQL Server
 * Working with Docker
 
+## Clone project
+```
+$git clone https://github.com/up1/workshop-develop-microservices-2023.git demo
+$cd demo
+```
 
 ## Step to run workshop with Docker
 1. Start Distributed tracing :: [Jaeger](https://www.jaegertracing.io/)
