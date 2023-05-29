@@ -10,6 +10,13 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
+app.get('/product/:id', (req, res) => {
+  res.json({ 
+    product_id: Number(req.params.id),
+    stock: 9
+  })
+})
+
 app.get("/healthz", (req, res) => res.status(200).send("OK"));
 
 app.listen(port, () => {
