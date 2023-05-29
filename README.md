@@ -71,6 +71,7 @@ Stock service
 ```
 $docker compose -f docker-compose-build.yml build stock
 $docker compose -f docker-compose-build.yml up -d stock
+$docker compose -f docker-compose-build.yml logs --follow
 $docker compose -f docker-compose-build.yml ps
 NAME                IMAGE               COMMAND                  SERVICE             CREATED             STATUS                   PORTS
 demo-stock-1        somkiat/stock:1.0   "docker-entrypoint.s…"   stock               6 seconds ago       Up 5 seconds (healthy)
