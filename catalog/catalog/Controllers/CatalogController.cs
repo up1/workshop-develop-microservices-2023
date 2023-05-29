@@ -14,6 +14,7 @@ public class CatalogController : ControllerBase
     private IMapper _mapper;
     private readonly HttpClient _httpClient;
     private readonly ILogger<CatalogController> _logger;
+    private readonly IHttpClientFactory _httpClientFactory;
 
     public CatalogController(ILogger<CatalogController> logger, HttpClient httpClient,
         IProductService productService, IMapper mapper)
@@ -32,14 +33,19 @@ public class CatalogController : ControllerBase
     }
 
     [HttpGet("/products")]
-    public IActionResult GetProducts()
+    public async Task<IActionResult> GetProducts()
     {
         _logger.LogInformation(2000, "TRACING DEMO: Get all products from database");
         var products = _productService.GetAll();
+
         _logger.LogInformation(2001, "TRACING DEMO: Call stock service");
-        _httpClient.GetStringAsync("http://stock:3000/");
+        var pricingClient = _httpClientFactory.CreateClient("Stock-Service");
+        var result = await pricingClient.GetStringAsync("/product/1");
+        Console.WriteLine(result);
+
         _logger.LogInformation(2002, "TRACING DEMO: Call pricing service");
-        _httpClient.GetStringAsync("http://pricing:3000/");
+        var stockClient = _httpClientFactory.CreateClient("Pricing-Service");
+        await stockClient.GetStringAsync("/product/1");
         return Ok(products);
     }
 }

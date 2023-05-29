@@ -7,6 +7,8 @@ using catalog;
 using catalog.Services;
 using AutoMapper;
 using System.Text.Json.Serialization;
+using Polly.Retry;
+using Polly;
 
 var appBuilder = WebApplication.CreateBuilder(args);
 // Add services to the container.
@@ -42,6 +44,23 @@ appBuilder.Services.AddOpenTelemetry()
         });
 
     });
+
+// Add circuit breaker
+appBuilder.Services.AddHttpClient("Stock-Service", client =>
+{
+    client.BaseAddress = new Uri("http://stock:3000");
+});
+
+appBuilder.Services.AddHttpClient("Pricing-Service", client =>
+{
+    client.BaseAddress = new Uri("http://pricing:3000");
+})
+.AddTransientHttpErrorPolicy(builder => builder.WaitAndRetryAsync(new[]
+{
+    TimeSpan.FromSeconds(1),
+    TimeSpan.FromSeconds(5),
+    TimeSpan.FromSeconds(10)
+}));
 
 appBuilder.Services.AddControllers().AddJsonOptions(x =>
 {
