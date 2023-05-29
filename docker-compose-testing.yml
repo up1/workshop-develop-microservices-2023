@@ -36,6 +36,7 @@ services:
   
   gateway_testing:
     image: postman/newman:alpine
+    network_mode: "host" 
     volumes:
       - ./api_testing/workshop-microservices.postman_collection.json:/etc/newman/gateway.json
     command:
