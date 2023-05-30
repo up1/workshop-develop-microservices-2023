@@ -56,23 +56,9 @@ $docker compose -f docker-compose-build.yml ps
 $docker compose -f docker-compose-build.yml logs --follow
 ```
 
-## Deploy with docker-compose
-```
-$docker compose -f docker-compose-build.yml down
-$docker compose -f docker-compose-build.yml build
-$docker compose -f docker-compose-build.yml up -d
-$docker compose -f docker-compose-build.yml ps
-$docker compose -f docker-compose-build.yml logs --follow
-```
+## Testing Process
 
-Initial data for testing
-```
-$sh initial_data.sh
-```
-
-## API Testing
-
-Stock service
+1. Stock service
 ```
 $docker compose -f docker-compose-build.yml build stock
 $docker compose -f docker-compose-build.yml up -d stock
@@ -88,7 +74,7 @@ $docker compose -f docker-compose-testing.yml down
 $docker volume prune
 ```
 
-Pricing service
+2. Pricing service
 ```
 $docker compose -f docker-compose-build.yml build pricing
 $docker compose -f docker-compose-build.yml up -d pricing
@@ -104,7 +90,7 @@ $docker compose -f docker-compose-testing.yml down
 $docker volume prune
 ```
 
-Catalog service
+3. Catalog service
 ```
 $docker compose -f docker-compose-build.yml down
 $docker compose -f docker-compose-build.yml build
@@ -124,12 +110,12 @@ $sh initial_data.sh
 $docker compose -f docker-compose-testing.yml up catalog_testing --force-recreate
 ```
 
-Gateway Testing
+4. Gateway Testing
 ```
 $docker compose -f docker-compose-testing.yml up gateway_testing --force-recreate
 ```
 
-Delete all resources
+5. Delete all resources
 ```
 $docker compose -f docker-compose-build.yml down
 $docker compose -f docker-compose-testing.yml down
