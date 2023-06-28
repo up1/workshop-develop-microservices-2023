@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('1. Pull code') {
             steps {
-                git branch: 'main', url: 'https://github.com/up1/workshop-develop-microservices-2023.git'
+                checkout scm
             }
         }
         stage('2. Build image') {
