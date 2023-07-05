@@ -39,6 +39,13 @@ $docker compose -f docker-compose-build.yml up -d stock
 
 Call Stock servie with URL :: http://localhost:9080/stock/
 
+### Start `Pricing service`
+```
+$docker compose -f docker-compose-build.yml build pricing
+$docker compose -f docker-compose-build.yml up -d pricing
+```
+
+Call Stock servie with URL :: http://localhost:9080/pricing/
 
 ### Start `Catalog service`
 ```
