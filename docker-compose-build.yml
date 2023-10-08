@@ -20,8 +20,8 @@ services:
       - "9080:9080"
     environment:
       - TZ=Asia/Bangkok
-    depends_on:
-      - catalog
+    # depends_on:
+    #   - catalog
     networks:
       - demo
   
@@ -35,15 +35,15 @@ services:
       OTEL_RESOURCE_ATTRIBUTES: service.name=catalog
       OTEL_METRICS_EXPORTER: none
       OTEL_LOGS_EXPORTER: none
-    depends_on:
-      jaeger:
-        condition: service_started
-      pricing:
-        condition: service_healthy
-      stock:
-        condition: service_healthy
-      # database:
-      #   condition: service_healthy
+    # depends_on:
+    #   jaeger:
+    #     condition: service_started
+    #   pricing:
+    #     condition: service_healthy
+    #   stock:
+    #     condition: service_healthy
+    #   database:
+    #     condition: service_healthy
     networks:
       - demo
   
