@@ -5,9 +5,19 @@ deployment:
 plugins:
   - opentelemetry
   - proxy-rewrite
+  - prometheus
 plugin_attr:
   opentelemetry:
     resource:
       service.name: APISIX
     collector:
       address: jaeger:4318
+  prometheus:
+    export_addr:
+      ip: 0.0.0.0
+      port: 9091
+    metrics:
+        http_status:
+            extra_labels:
+                - upstream_addr: $upstream_addr
+                - upstream_status: $upstream_status

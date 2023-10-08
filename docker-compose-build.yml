@@ -10,6 +10,24 @@ services:
       - COLLECTOR_OTLP_ENABLED=true
     networks:
       - demo
+  
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - "./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml"
+    networks:
+      - demo
+
+  grafana:
+    image: grafana/grafana-oss:8.5.2
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./grafana/:/etc/grafana/provisioning
+    networks:
+      - demo
 
   gateway:
     image: apache/apisix:3.2.0-debian
@@ -18,6 +36,7 @@ services:
       - ./gateway/apisix.yml:/usr/local/apisix/conf/apisix.yaml:ro
     ports:
       - "9080:9080"
+      - "9091:9091"
     environment:
       - TZ=Asia/Bangkok
     # depends_on:

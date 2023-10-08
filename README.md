@@ -1,6 +1,9 @@
 # Microservices workshop
 * API gateway
-  * APISIX or Kong
+  * APISIX
+    * [Tracers](https://apisix.apache.org/docs/apisix/plugins/opentelemetry/)
+    * [Metrics](https://apisix.apache.org/docs/apisix/plugins/prometheus/)
+    * [Loggers](https://apisix.apache.org/docs/apisix/plugins/http-logger/)
 * Services
   * Stock and Pricing
     * NodeJS
@@ -80,6 +83,65 @@ $docker compose -f docker-compose-build.yml down
 $sh deploy_with_docker.sh
 $docker compose -f docker-compose-build.yml ps
 $docker compose -f docker-compose-build.yml logs --follow
+```
+
+## Working with Application metric
+* APISIX 
+* [Prometheus](https://prometheus.io/)
+* [Grafana](https://grafana.com/)
+
+
+### Step 1 :: Start APISIX as a API Gateway
+```
+$docker compose -f docker-compose-build.yml up -d gateway
+$docker compose -f docker-compose-build.yml ps
+$docker compose -f docker-compose-build.yml logs --follow
+```
+
+URL of prometheus metric of APISIX
+* http://localhost:9091/apisix/prometheus/metrics
+
+Try to call service from api gateway
+* http://localhost:9080/catalog/
+* http://localhost:9080/stock/
+* http://localhost:9080/pricing/
+
+### Step 2 :: Start Prometheus server to collect metric data from APISIX
+```
+$docker compose -f docker-compose-build.yml up -d prometheus
+$docker compose -f docker-compose-build.yml ps
+$docker compose -f docker-compose-build.yml logs --follow
+```
+
+URL of prometheus server
+* http://localhost:9090
+* Go to menu Status -> Targets
+
+List of metrics name
+* apisix_http_requests_total
+* apisix_http_status
+* apisix_http_latency_bucket
+
+### Step 3 :: Start Grafana server
+```
+$docker compose -f docker-compose-build.yml up -d grafana
+$docker compose -f docker-compose-build.yml ps
+$docker compose -f docker-compose-build.yml logs --follow
+```
+
+URL of grafana server
+* http://localhost:3000
+  * user=admin
+  * password=admin
+
+Try to config
+* Datasource
+* Dashboard
+
+### Step 4 :: Delete all resources
+```
+$docker compose -f docker-compose-build.yml down
+$docker volume prune
 ```
 
 ## Testing Process :: API testing with Postman and newman

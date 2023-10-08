@@ -56,4 +56,5 @@ global_rules:
           - route_id
           - request_method
           - http_x-otel-key
+      prometheus: null
 #END
