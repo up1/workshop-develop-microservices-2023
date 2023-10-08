@@ -18,14 +18,14 @@ pipeline {
                     sleep 5'''
                 sh '''docker compose -f docker-compose-build.yml up -d stock
                     sleep 5'''
-                sh "docker compose -f docker-compose-testing.yml up stock_testing --force-recreate --exit-code-from stock_testing"
+                sh "docker compose -f docker-compose-testing.yml up stock_testing --abort-on-container-exit --buildg"
             }
         }
         stage('4. Testing Pricing service') {
             steps {
                 sh '''docker compose -f docker-compose-build.yml up -d pricing
                     sleep 5'''
-                sh "docker compose -f docker-compose-testing.yml up pricing_testing --force-recreate --exit-code-from pricing_testing"
+                sh "docker compose -f docker-compose-testing.yml up pricing_testing --abort-on-container-exit --build"
             }
         }
         stage('5. Testing Catalog service') {
@@ -34,12 +34,12 @@ pipeline {
                     sleep 5
                     sh initial_data.sh
                     sleep 5'''
-                sh "docker compose -f docker-compose-testing.yml up catalog_testing --force-recreate --exit-code-from catalog_testing"
+                sh "docker compose -f docker-compose-testing.yml up catalog_testing --abort-on-container-exit --build"
             }
         }
         stage('6. Gateway Testing') {
             steps {
-                sh 'docker compose -f docker-compose-testing.yml up gateway_testing --force-recreate --exit-code-from gateway_testing'
+                sh 'docker compose -f docker-compose-testing.yml up gateway_testing --abort-on-container-exit --build'
             }
         }
     }
