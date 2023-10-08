@@ -84,7 +84,7 @@ $docker compose -f docker-compose-build.yml logs --follow
 
 ## Testing Process :: API testing with Postman and newman
 
-1. Stock service
+### 1. Stock service
 
 Build and run
 ```
@@ -108,7 +108,7 @@ $docker compose -f docker-compose-testing.yml down
 $docker volume prune
 ```
 
-2. Pricing service
+### 2. Pricing service
 
 Build and run
 ```
@@ -131,7 +131,7 @@ $docker compose -f docker-compose-testing.yml down
 $docker volume prune
 ```
 
-3. Catalog service
+### 3. Catalog service
 
 Start Jaeger
 ```
@@ -169,14 +169,16 @@ Testing
 $docker compose -f docker-compose-testing.yml up catalog_testing
 ```
 
-4. Gateway Testing
+### 4. Gateway Testing
+
+Build and Testing
 ```
 $docker compose -f docker-compose-build.yml up -d gateway
 
 $docker compose -f docker-compose-testing.yml up gateway_testing
 ```
 
-5. Delete all resources
+Delete all resources
 ```
 $docker compose -f docker-compose-build.yml down
 $docker compose -f docker-compose-testing.yml down
