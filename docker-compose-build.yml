@@ -42,8 +42,8 @@ services:
         condition: service_healthy
       stock:
         condition: service_healthy
-      database:
-        condition: service_healthy
+      # database:
+      #   condition: service_healthy
     networks:
       - demo
   
@@ -95,6 +95,14 @@ services:
     networks:
       - demo
   
+  sqlcmd:
+    build:
+      context: ./database
+      dockerfile: Dockerfile
+    stdin_open: true
+    networks:
+      - demo
+
   database:
     image: mcr.microsoft.com/azure-sql-edge
     container_name: database
@@ -110,12 +118,12 @@ services:
       ACCEPT_EULA: Y
       MSSQL_SA_PASSWORD: zitgmLwmp1@q
       MSSQL_PID: Developer
-    healthcheck:
-      test: ["CMD", "/opt/mssql-tools/bin/sqlcmd", "-Usa", "-PzitgmLwmp1@q", "-Q", "select 1"]
-      interval: 5s
-      timeout: 5s
-      retries: 5
-      start_period: 10s
+    # healthcheck:
+    #   test: ["CMD", "/opt/mssql-tools/bin/sqlcmd", "-Usa", "-PzitgmLwmp1@q", "-Q", "select 1"]
+    #   interval: 5s
+    #   timeout: 5s
+    #   retries: 5
+    #   start_period: 10s
     networks:
       - demo
 

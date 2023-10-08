@@ -1,9 +1,13 @@
 # Microservices workshop
-* Frontend => ReactJS
-* API gateway => APISIX or Kong
+* API gateway
+  * APISIX or Kong
 * Services
-  * NodeJS
-  * .NET C#
+  * Stock and Pricing
+    * NodeJS
+    * MySQL
+  * Catalog
+    * .NET C#
+    * MSSQL Server
 * Database => MS SQL Server
 * Working with Docker
 
@@ -16,20 +20,13 @@ $cd demo
 ## Step to run workshop with Docker
 1. Start Distributed tracing :: [Jaeger](https://www.jaegertracing.io/)
 2. Start API gateway :: [APISIX](https://apisix.apache.org/)
-
-
 ```
 $docker compose -f docker-compose-build.yml up -d jaeger
 $docker compose -f docker-compose-build.yml up -d gateway
 ```
 
-URL of Jaeger dashboard :: http://localhost:16686/
-
-### Start `database service`
-```
-$docker compose -f docker-compose-build.yml up -d database
-$docker compose -f docker-compose-build.yml ps
-```
+* URL of Jaeger dashboard :: http://localhost:16686
+* URL of API gateway :: http://localhost:9080
 
 ### Start `Stock service`
 ```
@@ -47,13 +44,24 @@ $docker compose -f docker-compose-build.yml up -d pricing
 
 Call Stock servie with URL :: http://localhost:9080/pricing/
 
+### Start `database service` with MSSQL Server
+```
+$docker compose -f docker-compose-build.yml up -d database
+$docker compose -f docker-compose-build.yml ps
+```
+
 ### Start `Catalog service`
 ```
 $docker compose -f docker-compose-build.yml build catalog
 $docker compose -f docker-compose-build.yml up -d catalog
 ```
 
-Call Stock servie with URL :: http://localhost:9080/catalog/
+* Call Stock service from API Gateway with URL :: http://localhost:9080/catalog/
+* Initial data for testing :: http://localhost:9080/catalog/init
+* API of catalog services
+  * Get all product from database :: http://localhost:9080/catalog/products-db
+  * Get all product + pricing + stock service :: http://localhost:9080/catalog/products
+
 
 
 ## Deploy with single command
