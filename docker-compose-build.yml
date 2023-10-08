@@ -35,13 +35,16 @@ services:
       OTEL_RESOURCE_ATTRIBUTES: service.name=catalog
       OTEL_METRICS_EXPORTER: none
       OTEL_LOGS_EXPORTER: none
-    # depends_on:
-    #   jaeger:
-    #     condition: service_started
-    #   pricing:
-    #     condition: service_healthy
-    #   stock:
-    #     condition: service_healthy
+    ports:
+      - "9999:80"
+
+    depends_on:
+      jaeger:
+        condition: service_started
+      pricing:
+        condition: service_healthy
+      stock:
+        condition: service_healthy
     #   database:
     #     condition: service_healthy
     networks:

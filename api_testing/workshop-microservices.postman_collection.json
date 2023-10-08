@@ -31,13 +31,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://178.128.88.8:9080/catalog/products",
+					"raw": "http://gateway:9080/catalog/products",
 					"protocol": "http",
 					"host": [
-						"178",
-						"128",
-						"88",
-						"8"
+						"gateway"
 					],
 					"port": "9080",
 					"path": [
@@ -71,13 +68,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://178.128.88.8:9080/stock/healthz",
+					"raw": "http://gateway:9080/stock/healthz",
 					"protocol": "http",
 					"host": [
-						"178",
-						"128",
-						"88",
-						"8"
+						"gateway"
 					],
 					"port": "9080",
 					"path": [
@@ -111,13 +105,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://178.128.88.8:9080/pricing/healthz",
+					"raw": "http://gateway:9080/pricing/healthz",
 					"protocol": "http",
 					"host": [
-						"178",
-						"128",
-						"88",
-						"8"
+						"gateway"
 					],
 					"port": "9080",
 					"path": [
@@ -151,13 +142,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://178.128.88.8:9080/catalog/healthz",
+					"raw": "http://gateway:9080/catalog/healthz",
 					"protocol": "http",
 					"host": [
-						"178",
-						"128",
-						"88",
-						"8"
+						"gateway"
 					],
 					"port": "9080",
 					"path": [
