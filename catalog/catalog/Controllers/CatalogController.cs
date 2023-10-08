@@ -54,5 +54,21 @@ public class CatalogController : ControllerBase
 
         return Ok(products);
     }
+
+    [HttpGet("/products-db")]
+    public async Task<IActionResult> GetProductsFromDb()
+    {
+        _logger.LogInformation(2000, "TRACING DEMO: Get all products from database");
+        var products = _productService.GetAll();
+        return Ok(products);
+    }
+
+    [HttpGet("/init")]
+    public async Task<IActionResult> Init()
+    {
+        _logger.LogInformation(2000, "TRACING DEMO: Initial data in database (workaround for mac M1/M2)");
+        _productService.Init();
+        return Ok("Initial data success");
+    }
 }
 

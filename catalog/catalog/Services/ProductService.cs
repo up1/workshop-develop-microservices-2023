@@ -7,6 +7,7 @@ namespace catalog.Services
         {
         IEnumerable<Product> GetAll();
         Product GetById(int id);
+        void Init();
     }
     public class ProductService : IProductService
     {
@@ -24,6 +25,19 @@ namespace catalog.Services
         IEnumerable<Product> IProductService.GetAll()
         {
             return _context.Products;
+        }
+
+        void IProductService.Init()
+        {
+            var p1 = new Product();
+            p1.Name = "Name 01";
+            p1.Description = "Description 01";
+            var p2 = new Product();
+            p2.Name = "Name 02";
+            p2.Description = "Description 02";
+            _context.Products.Add(p1);
+            _context.Products.Add(p2);
+            _context.SaveChanges();
         }
 
         Product IProductService.GetById(int id)
