@@ -8,7 +8,10 @@
   * Catalog
     * .NET C#
     * MSSQL Server
-* Database => MS SQL Server
+* Observability
+  * Distributed Tracing
+    * OpenTelemetry
+    * Jaeger
 * Working with Docker
 
 ## Clone project
