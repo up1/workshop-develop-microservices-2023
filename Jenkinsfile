@@ -4,7 +4,8 @@ pipeline {
     stages {
         stage('1. Pull code') {
             steps {
-                checkout scm
+                // checkout scm
+                git branch: 'main', url: 'https://github.com/up1/workshop-develop-microservices-2023.git'
             }
         }
         stage('2. Build image') {
@@ -30,7 +31,7 @@ pipeline {
         }
         stage('5. Testing Catalog service') {
             steps {
-                sh '''docker compose -f docker-compose-build.yml up -d gateway
+                sh '''docker compose -f docker-compose-build.yml up -d database
                     sleep 5
                     docker compose -f docker-compose-build.yml up -d catalog
                     sleep 5
