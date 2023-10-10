@@ -1,4 +1,4 @@
-# Microservices workshop
+# Microservices workshop 2023
 * API gateway
   * APISIX
     * [Tracers](https://apisix.apache.org/docs/apisix/plugins/opentelemetry/)
