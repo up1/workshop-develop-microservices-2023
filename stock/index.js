@@ -7,6 +7,10 @@ const express = require('express')
 const app = express()
 const port = 3000
 
+const { ExpressPrometheusMiddleware } = require('@matteodisabatino/express-prometheus-middleware')
+const epm = new ExpressPrometheusMiddleware()
+app.use(epm.handler)
+
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
