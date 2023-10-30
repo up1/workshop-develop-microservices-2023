@@ -138,7 +138,16 @@ Try to config
 * Datasource
 * Dashboard
 
-### Step 4 :: Delete all resources
+### Step 4 :: Application metric in Stock service
+* URL of metric
+  * http://localhost:9080/stock/metrics
+
+Steps
+* Add target in Prometheus
+* Create dashboard in Grafana
+
+
+### Step 5 :: Delete all resources
 ```
 $docker compose -f docker-compose-build.yml down
 $docker volume prune
