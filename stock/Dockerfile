@@ -5,7 +5,7 @@ RUN apk update && \
     apk add --no-cache curl
 ENV TZ=Asia/Bangkok
 WORKDIR /app
-COPY package*.json .
+COPY package.json .
 RUN npm install
 COPY . .
 CMD node index.js
