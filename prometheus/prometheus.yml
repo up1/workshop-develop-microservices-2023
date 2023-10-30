@@ -6,3 +6,11 @@ scrape_configs:
       - targets: ['gateway:9091']
         labels:
           application: 'api-gateway'
+
+  - job_name: 'stock-service'
+    scrape_interval: 5s
+    metrics_path: '/metrics'
+    static_configs:
+      - targets: ['stock:3000']
+        labels:
+          application: 'stock-service'
