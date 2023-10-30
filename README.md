@@ -139,9 +139,16 @@ Try to config
 * Dashboard
 
 ### Step 4 :: Application metric in Stock service
-* URL of metric
-  * http://localhost:9080/stock/metrics
 
+
+Build and run
+```
+$docker compose -f docker-compose-build.yml build stock
+$docker compose -f docker-compose-build.yml up -d stock
+```
+URL of metric
+  * http://localhost:9080/stock/metrics
+    
 Steps
 * Add target in Prometheus
 * Create dashboard in Grafana
