@@ -68,11 +68,11 @@ $docker compose -f docker-compose-build.yml build catalog
 $docker compose -f docker-compose-build.yml up -d catalog
 ```
 
-* Call Stock service from API Gateway with URL :: http://localhost:9080/catalog/
-* Initial data for testing :: http://localhost:9080/catalog/init
-* API of catalog services
-  * Get all product from database :: http://localhost:9080/catalog/products-db
-  * Get all product + pricing + stock service :: http://localhost:9080/catalog/products
+* Call Stock service from API Gateway with URL
+  * Initial data for testing :: http://localhost:9080/catalog/init
+  * API of catalog services
+    * Get all product from database :: http://localhost:9080/catalog/products-db
+    * Get all product + pricing + stock service :: http://localhost:9080/catalog/products
 
 
 ### Delete all services
