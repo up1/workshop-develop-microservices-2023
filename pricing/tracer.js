@@ -11,6 +11,7 @@ const { SimpleSpanProcessor } = require("@opentelemetry/sdk-trace-base");
 const { ZipkinExporter } = require("@opentelemetry/exporter-zipkin");
 const { HttpInstrumentation } = require("@opentelemetry/instrumentation-http");
 const { OTLPTraceExporter } = require("@opentelemetry/exporter-trace-otlp-http");
+const { MySQL2Instrumentation } = require('@opentelemetry/instrumentation-mysql2');
 
 const EXPORTER = process.env.EXPORTER || "";
 
@@ -36,7 +37,10 @@ module.exports = (serviceName) => {
   provider.register();
 
   registerInstrumentations({
-    instrumentations: [new HttpInstrumentation()],
+    instrumentations: [
+      new HttpInstrumentation(),
+      new MySQL2Instrumentation(),
+    ],
   });
 
   return opentelemetry.trace.getTracer("http-example");

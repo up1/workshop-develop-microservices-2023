@@ -52,7 +52,9 @@ $docker compose -f docker-compose-build.yml build pricing
 $docker compose -f docker-compose-build.yml up -d pricing
 ```
 
-Call Stock servie with URL :: http://localhost:9080/pricing/
+Call Stock servie with URL
+* http://localhost:9080/pricing/
+* http://localhost:9080/pricing/product/1
 
 ### Start `database service` with MSSQL Server
 ```

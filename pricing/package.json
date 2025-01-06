@@ -13,6 +13,7 @@
     "@opentelemetry/auto-instrumentations-node": "^0.37.0",
     "@opentelemetry/exporter-trace-otlp-http": "^0.39.1",
     "@opentelemetry/instrumentation": "^0.39.1",
+    "@opentelemetry/instrumentation-mysql2": "^0.45.0",
     "@opentelemetry/resources": "^1.13.0",
     "@opentelemetry/sdk-node": "^0.39.1",
     "@opentelemetry/semantic-conventions": "^1.13.0",
