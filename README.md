@@ -179,7 +179,7 @@ demo-stock-1        somkiat/stock:1.0   "docker-entrypoint.s…"   stock        
 
 Testing
 ```
-$docker compose -f docker-compose-testing.yml up stock_testing
+$docker compose -f docker-compose-testing.yml up stock_testing --build
 ```
 
 Delete
@@ -202,7 +202,7 @@ demo-pricing-1      somkiat/pricing:1.0   "docker-entrypoint.s…"   pricing    
 ```
 Testing
 ```
-$docker compose -f docker-compose-testing.yml up  pricing_testing
+$docker compose -f docker-compose-testing.yml up  pricing_testing --build
 ```
 
 Delete
@@ -247,7 +247,7 @@ $curl http://localhost:9999/init
 
 Testing
 ```
-$docker compose -f docker-compose-testing.yml up catalog_testing
+$docker compose -f docker-compose-testing.yml up catalog_testing --build
 ```
 
 ### 4. Gateway Testing
@@ -256,7 +256,7 @@ Build and Testing
 ```
 $docker compose -f docker-compose-build.yml up -d gateway
 
-$docker compose -f docker-compose-testing.yml up gateway_testing
+$docker compose -f docker-compose-testing.yml up gateway_testing  --build
 ```
 
 Delete all resources
