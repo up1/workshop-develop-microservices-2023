@@ -9,7 +9,8 @@
     * NodeJS
     * MySQL
   * Catalog
-    * .NET C#
+    * .NET 7
+    * C#
     * MSSQL Server
 * Observability
   * Distributed Tracing

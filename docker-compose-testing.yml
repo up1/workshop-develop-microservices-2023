@@ -1,5 +1,3 @@
-version: "3"
-
 services:
   stock_testing:
     image: postman/newman:alpine
