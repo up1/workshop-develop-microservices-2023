@@ -12,7 +12,7 @@ const epm = new ExpressPrometheusMiddleware()
 app.use(epm.handler)
 
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  res.send('Hello World Stock Service!')
 })
 
 const db = mysql.createConnection({
